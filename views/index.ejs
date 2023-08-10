@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="page-content page-container" id="page-content">
+        <div class="padding">
+            <div class="row container d-flex justify-content-center">
+                <div class="col-md-12">
+                    <div class="card px-3">
+                        <div class="card-body">
+                            <h4 class="card-title">Awesome Todo list</h4>
+                            <form action="/post" method="post" class="add-items d-flex">
+                                <input name="content" type="text" class="form-control todo-list-input" placeholder="What do you need to do today?">
+                                 <button name="name" value="<%= content.name %>" type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn">Add</button> 
+                            </form>
+                            <div class="list-wrapper">
+                                <ul class="d-flex flex-column-reverse todo-list">
+                              <% if(locals.content){%>
+                                <% content.works.forEach(element => {%>
+                                    <li>
+                                        <form method="post" action="/delete" class="form-check"> 
+                                            <label class="form-check-label"> <input value="<%= element._id  %>" name="checkbox" onchange="this.form.submit()" class="checkbox" type="checkbox"> <%= element.content %> <i class="input-helper"></i></label>
+                                            <input type="hidden" name="user" value="<%= content.name %>">
+                                         </form> 
+                                    </li>
+
+                              <%  });%>
+                             <% } %>
+                                   
+                                   
+                                 
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/template.js"></script>
+</body>
+</html>
